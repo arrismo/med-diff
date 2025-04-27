@@ -52,6 +52,9 @@ const DiffViewer: React.FC<DiffViewerProps> = ({
     const highlight = content.substring(location.start, location.end);
     const after = content.substring(location.end);
 
+    // Debug log for highlighting
+    console.log('Highlighting:', { start: location.start, end: location.end, highlight });
+
     const highlightClass = getHighlightClass(discrepancy.severity);
 
     return (

@@ -6,30 +6,7 @@ export const mockReports: Report[] = [
     title: 'Complete Blood Count',
     provider: 'City Hospital Lab',
     date: '2025-06-10T14:30:00Z',
-    content: `Patient: John Smith
-Age: 55
-Gender: Male
-Test: Complete Blood Count (CBC)
-Date: June 10, 2025
-
-RESULTS:
-WBC: 7.5 x 10^3/uL (4.5-11.0)
-RBC: 4.8 x 10^6/uL (4.5-5.9)
-Hemoglobin: 14.2 g/dL (13.5-17.5)
-Hematocrit: 42% (41-50%)
-MCV: 88 fL (80-100)
-MCH: 29.5 pg (27-31)
-MCHC: 33.8 g/dL (32-36)
-Platelets: 250 x 10^3/uL (150-450)
-Glucose: 115 mg/dL (70-99) - HIGH
-
-INTERPRETATION:
-Mild elevation in glucose levels suggesting pre-diabetic condition.
-All other values within normal range.
-Follow-up recommended in 3 months.
-
-Dr. James Wilson
-Laboratory Director`,
+    content: `Patient: John Smith\nAge: 55\nGender: Male\nTest: Complete Blood Count (CBC)\nDate: June 10, 2025\n\nRESULTS:\nWBC: 7.5 x 10^3/uL (4.5-11.0)\nRBC: 4.8 x 10^6/uL (4.5-5.9)\nHemoglobin: 14.2 g/dL (13.5-17.5)\nHematocrit: 42% (41-50%)\nMCV: 88 fL (80-100)\nMCH: 29.5 pg (27-31)\nMCHC: 33.8 g/dL (32-36)\nPlatelets: 250 x 10^3/uL (150-450)\nGlucose: 115 mg/dL (70-99) - HIGH\n\nINTERPRETATION:\nMild elevation in glucose levels suggesting pre-diabetic condition.\nAll other values within normal range.\nFollow-up recommended in 3 months.\n\nDr. James Wilson\nLaboratory Director`,
     patient: {
       id: 'P-12345',
       name: 'John Smith',
@@ -47,30 +24,7 @@ Laboratory Director`,
     title: 'Blood Chemistry Analysis',
     provider: 'MediLab Services',
     date: '2025-06-12T10:15:00Z',
-    content: `PATIENT INFORMATION:
-Name: John Smith
-DOB: 01/15/1970
-Sex: M
-Collected: 06/12/2025 08:30 AM
-Reported: 06/12/2025 10:15 AM
-
-TEST RESULTS:
-Glucose (fasting): 126 mg/dL [Reference: 65-95 mg/dL] *HIGH*
-HbA1c: 6.2% [Reference: 4.0-5.6%] *HIGH*
-WBC Count: 7.8 x 10^3/uL [Reference: 4.5-11.0 x 10^3/uL]
-RBC Count: 4.9 x 10^6/uL [Reference: 4.5-5.9 x 10^6/uL]
-Hemoglobin: 14.5 g/dL [Reference: 13.5-17.5 g/dL]
-Platelets: 245 x 10^3/uL [Reference: 150-450 x 10^3/uL]
-
-CLINICAL FINDINGS:
-Patient presents with elevated glucose levels consistent with diabetes mellitus.
-Recommend follow-up with primary care physician within 2 weeks.
-Dietary modification and glucose monitoring advised.
-
-Electronically signed by:
-Dr. Patricia Lee, MD, FCAP
-Laboratory Director
-MediLab Services`,
+    content: `PATIENT INFORMATION:\nName: John Smith\nDOB: 01/15/1970\nSex: M\nCollected: 06/12/2025 08:30 AM\nReported: 06/12/2025 10:15 AM\n\nTEST RESULTS:\nGlucose (fasting): 140 mg/dL [Reference: 65-95 mg/dL] *HIGH*\nHbA1c: 7.2% [Reference: 4.0-5.6%] *HIGH*\nWBC Count: 7.8 x 10^3/uL [Reference: 4.5-11.0 x 10^3/uL]\nRBC Count: 4.9 x 10^6/uL [Reference: 4.5-5.9 x 10^6/uL]\nHemoglobin: 14.5 g/dL [Reference: 13.5-17.5 g/dL]\nPlatelets: 245 x 10^3/uL [Reference: 150-450 x 10^3/uL]\n\nCLINICAL FINDINGS:\nPatient presents with elevated glucose levels consistent with diabetes mellitus.\nRecommend follow-up with primary care physician within 1 week.\nDietary modification and glucose monitoring advised.\n\nElectronically signed by:\nDr. Patricia Lee, MD, FCAP\nLaboratory Director\nMediLab Services`,
     patient: {
       id: 'P-12345',
       name: 'John Smith',
@@ -120,6 +74,276 @@ Clinical Pathologist`,
       testType: 'Lipid Panel',
       orderedBy: 'Dr. Emily Brooks',
       reportedBy: 'Dr. William Thompson',
+    },
+  },
+  {
+    id: 'report-4',
+    title: 'Renal Function Panel',
+    provider: 'City Hospital Lab',
+    date: '2025-06-18T11:00:00Z',
+    content: `Patient: Alice Brown\nAge: 60\nGender: Female\nTest: Renal Function Panel\nDate: June 18, 2025\n\nRESULTS:\nBUN: 18 mg/dL (7-20)\nCreatinine: 1.0 mg/dL (0.6-1.3)\nGFR: 85 mL/min (>60)\nINTERPRETATION:\nAll values within normal range.\nFollow-up recommended in 6 months.`,
+    patient: {
+      id: 'P-67890',
+      name: 'Alice Brown',
+      age: 60,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Renal Function',
+      orderedBy: 'Dr. Lee',
+      reportedBy: 'City Hospital Lab',
+    },
+  },
+  {
+    id: 'report-5',
+    title: 'Thyroid Panel',
+    provider: 'MediLab Services',
+    date: '2025-06-20T13:30:00Z',
+    content: `Patient: Bob Green\nAge: 45\nGender: Male\nTest: Thyroid Panel\nDate: June 20, 2025\n\nRESULTS:\nTSH: 2.5 uIU/mL (0.4-4.0)\nT4: 8.0 ug/dL (5.0-12.0)\nT3: 120 ng/dL (80-180)\nINTERPRETATION:\nAll values within normal range.\nFollow-up recommended in 1 year.`,
+    patient: {
+      id: 'P-54321',
+      name: 'Bob Green',
+      age: 45,
+      gender: 'Male',
+    },
+    metadata: {
+      testType: 'Thyroid',
+      orderedBy: 'Dr. Patel',
+      reportedBy: 'MediLab Services',
+    },
+  },
+  {
+    id: 'report-6',
+    title: 'Liver Function Test',
+    provider: 'Central Diagnostics',
+    date: '2025-06-22T09:00:00Z',
+    content: `Patient: Carol White\nAge: 38\nGender: Female\nTest: Liver Function Test\nDate: June 22, 2025\n\nRESULTS:\nALT: 22 U/L (7-56)\nAST: 19 U/L (10-40)\nALP: 80 U/L (44-147)\nBilirubin: 0.7 mg/dL (0.1-1.2)\nINTERPRETATION:\nAll values within normal range.\nFollow-up recommended in 1 year.`,
+    patient: {
+      id: 'P-11223',
+      name: 'Carol White',
+      age: 38,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Liver Function',
+      orderedBy: 'Dr. Kim',
+      reportedBy: 'Central Diagnostics',
+    },
+  },
+  {
+    id: 'report-7',
+    title: 'Electrolyte Panel',
+    provider: 'QuickLab',
+    date: '2025-06-25T15:45:00Z',
+    content: `Patient: David Black\nAge: 50\nGender: Male\nTest: Electrolyte Panel\nDate: June 25, 2025\n\nRESULTS:\nSodium: 140 mmol/L (135-145)\nPotassium: 4.2 mmol/L (3.5-5.1)\nChloride: 102 mmol/L (98-107)\nBicarbonate: 25 mmol/L (22-29)\nINTERPRETATION:\nAll values within normal range.\nFollow-up recommended in 1 year.`,
+    patient: {
+      id: 'P-33445',
+      name: 'David Black',
+      age: 50,
+      gender: 'Male',
+    },
+    metadata: {
+      testType: 'Electrolyte',
+      orderedBy: 'Dr. Singh',
+      reportedBy: 'QuickLab',
+    },
+  },
+  {
+    id: 'report-8',
+    title: 'Vitamin D Test',
+    provider: 'Sunrise Labs',
+    date: '2025-06-28T08:20:00Z',
+    content: `Patient: Emily Stone\nAge: 29\nGender: Female\nTest: Vitamin D Test\nDate: June 28, 2025\n\nRESULTS:\nVitamin D: 32 ng/mL (30-100)\nINTERPRETATION:\nSufficient vitamin D level.\nFollow-up recommended in 1 year.`,
+    patient: {
+      id: 'P-55667',
+      name: 'Emily Stone',
+      age: 29,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Vitamin D',
+      orderedBy: 'Dr. Adams',
+      reportedBy: 'Sunrise Labs',
+    },
+  },
+  {
+    id: 'report-9',
+    title: 'Electrolyte Panel',
+    provider: 'City Hospital Lab',
+    date: '2025-07-01T10:00:00Z',
+    content: `Patient: Alice Brown\nAge: 60\nGender: Female\nTest: Electrolyte Panel\nDate: July 1, 2025\n\nRESULTS:\nSodium: 130 mmol/L (135-145) - LOW\nPotassium: 4.0 mmol/L (3.5-5.1)\nChloride: 101 mmol/L (98-107)\nBicarbonate: 24 mmol/L (22-29)\nINTERPRETATION:\nHyponatremia detected. Follow-up recommended in 1 month.`,
+    patient: {
+      id: 'P-67890',
+      name: 'Alice Brown',
+      age: 60,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Electrolyte',
+      orderedBy: 'Dr. Lee',
+      reportedBy: 'City Hospital Lab',
+    },
+  },
+  {
+    id: 'report-10',
+    title: 'Vitamin B12 Test',
+    provider: 'MediLab Services',
+    date: '2025-07-03T09:30:00Z',
+    content: `Patient: Bob Green\nAge: 45\nGender: Male\nTest: Vitamin B12 Test\nDate: July 3, 2025\n\nRESULTS:\nVitamin B12: 120 pg/mL (200-900) - LOW\nINTERPRETATION:\nVitamin B12 deficiency detected. Follow-up recommended in 3 months.`,
+    patient: {
+      id: 'P-54321',
+      name: 'Bob Green',
+      age: 45,
+      gender: 'Male',
+    },
+    metadata: {
+      testType: 'Vitamin B12',
+      orderedBy: 'Dr. Patel',
+      reportedBy: 'MediLab Services',
+    },
+  },
+  {
+    id: 'report-11',
+    title: 'Basic Metabolic Panel',
+    provider: 'Central Diagnostics',
+    date: '2025-07-05T11:15:00Z',
+    content: `Patient: Carol White\nAge: 38\nGender: Female\nTest: Basic Metabolic Panel\nDate: July 5, 2025\n\nRESULTS:\nGlucose: 110 mg/dL (70-99) - HIGH\nCalcium: 9.2 mg/dL (8.5-10.5)\nSodium: 138 mmol/L (135-145)\nPotassium: 4.1 mmol/L (3.5-5.1)\nINTERPRETATION:\nMild hyperglycemia detected. Follow-up recommended in 2 weeks.`,
+    patient: {
+      id: 'P-11223',
+      name: 'Carol White',
+      age: 38,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Basic Metabolic Panel',
+      orderedBy: 'Dr. Kim',
+      reportedBy: 'Central Diagnostics',
+    },
+  },
+  {
+    id: 'report-12',
+    title: 'Calcium Test',
+    provider: 'QuickLab',
+    date: '2025-07-07T14:00:00Z',
+    content: `Patient: David Black\nAge: 50\nGender: Male\nTest: Calcium Test\nDate: July 7, 2025\n\nRESULTS:\nCalcium: 7.5 mg/dL (8.5-10.5) - LOW\nINTERPRETATION:\nHypocalcemia detected. Follow-up recommended in 2 weeks.`,
+    patient: {
+      id: 'P-33445',
+      name: 'David Black',
+      age: 50,
+      gender: 'Male',
+    },
+    metadata: {
+      testType: 'Calcium',
+      orderedBy: 'Dr. Singh',
+      reportedBy: 'QuickLab',
+    },
+  },
+  {
+    id: 'report-13',
+    title: 'Iron Panel',
+    provider: 'Sunrise Labs',
+    date: '2025-07-10T08:45:00Z',
+    content: `Patient: Emily Stone\nAge: 29\nGender: Female\nTest: Iron Panel\nDate: July 10, 2025\n\nRESULTS:\nSerum Iron: 85 ug/dL (60-170)\nTIBC: 320 ug/dL (250-370)\nTransferrin Saturation: 27% (20-50)\nINTERPRETATION:\nAll values within normal range.`,
+    patient: {
+      id: 'P-55667',
+      name: 'Emily Stone',
+      age: 29,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Iron Panel',
+      orderedBy: 'Dr. Adams',
+      reportedBy: 'Sunrise Labs',
+    },
+  },
+  {
+    id: 'report-14',
+    title: 'Basic Metabolic Panel',
+    provider: 'QuickLab',
+    date: '2025-07-12T10:30:00Z',
+    content: `Patient: Alice Brown\nAge: 60\nGender: Female\nTest: Basic Metabolic Panel\nDate: July 12, 2025\n\nRESULTS:\nGlucose: 92 mg/dL (70-99)\nCalcium: 9.0 mg/dL (8.5-10.5)\nSodium: 137 mmol/L (135-145)\nPotassium: 4.3 mmol/L (3.5-5.1)\nINTERPRETATION:\nAll values within normal range.`,
+    patient: {
+      id: 'P-67890',
+      name: 'Alice Brown',
+      age: 60,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Basic Metabolic Panel',
+      orderedBy: 'Dr. Singh',
+      reportedBy: 'QuickLab',
+    },
+  },
+  {
+    id: 'report-15',
+    title: 'Liver Function Test',
+    provider: 'Central Diagnostics',
+    date: '2025-07-14T09:00:00Z',
+    content: `Patient: Bob Green\nAge: 45\nGender: Male\nTest: Liver Function Test\nDate: July 14, 2025\n\nRESULTS:\nALT: 20 U/L (7-56)\nAST: 18 U/L (10-40)\nALP: 78 U/L (44-147)\nBilirubin: 0.8 mg/dL (0.1-1.2)\nINTERPRETATION:\nAll values within normal range.`,
+    patient: {
+      id: 'P-54321',
+      name: 'Bob Green',
+      age: 45,
+      gender: 'Male',
+    },
+    metadata: {
+      testType: 'Liver Function',
+      orderedBy: 'Dr. Kim',
+      reportedBy: 'Central Diagnostics',
+    },
+  },
+  {
+    id: 'report-16',
+    title: 'Vitamin D Test',
+    provider: 'Sunrise Labs',
+    date: '2025-07-16T08:20:00Z',
+    content: `Patient: Carol White\nAge: 38\nGender: Female\nTest: Vitamin D Test\nDate: July 16, 2025\n\nRESULTS:\nVitamin D: 30 ng/mL (30-100)\nINTERPRETATION:\nSufficient vitamin D level.`,
+    patient: {
+      id: 'P-11223',
+      name: 'Carol White',
+      age: 38,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Vitamin D',
+      orderedBy: 'Dr. Adams',
+      reportedBy: 'Sunrise Labs',
+    },
+  },
+  {
+    id: 'report-17',
+    title: 'Renal Function Panel',
+    provider: 'City Hospital Lab',
+    date: '2025-07-18T11:00:00Z',
+    content: `Patient: David Black\nAge: 50\nGender: Male\nTest: Renal Function Panel\nDate: July 18, 2025\n\nRESULTS:\nBUN: 17 mg/dL (7-20)\nCreatinine: 1.1 mg/dL (0.6-1.3)\nGFR: 82 mL/min (>60)\nINTERPRETATION:\nAll values within normal range.`,
+    patient: {
+      id: 'P-33445',
+      name: 'David Black',
+      age: 50,
+      gender: 'Male',
+    },
+    metadata: {
+      testType: 'Renal Function',
+      orderedBy: 'Dr. Lee',
+      reportedBy: 'City Hospital Lab',
+    },
+  },
+  {
+    id: 'report-18',
+    title: 'Blood Chemistry Analysis',
+    provider: 'MediLab Services',
+    date: '2025-07-20T10:15:00Z',
+    content: `Patient: Emily Stone\nAge: 29\nGender: Female\nTest: Blood Chemistry Analysis\nDate: July 20, 2025\n\nRESULTS:\nGlucose (fasting): 130 mg/dL [Reference: 65-95 mg/dL] - HIGH\nHbA1c: 6.0% [Reference: 4.0-5.6%] - HIGH\nWBC Count: 6.9 x 10^3/uL [Reference: 4.5-11.0 x 10^3/uL]\nINTERPRETATION:\nHyperglycemia and elevated HbA1c detected. Follow-up recommended in 2 weeks.`,
+    patient: {
+      id: 'P-55667',
+      name: 'Emily Stone',
+      age: 29,
+      gender: 'Female',
+    },
+    metadata: {
+      testType: 'Blood Chemistry',
+      orderedBy: 'Dr. Robert Chen',
+      reportedBy: 'MediLab Services',
     },
   },
 ];

@@ -95,9 +95,12 @@ For each discrepancy found, create a JSON object with:
 - The type of discrepancy ("conflict" for different values/interpretations, "missing" for missing values)
 - A clear description of the difference
 - The severity ("critical" for clinically significant differences, "high" for important differences, "medium" for moderate differences)
-- The exact location in each report (character start/end positions)
+- The exact location in each report (character start/end positions, 0-based, inclusive start, exclusive end, matching the exact text provided above)
+- The exact phrase(s) from each report that you are referencing as "report1Text" and "report2Text" (if not present, set to null)
 - Clinical context explaining the significance
 - A suggestion for resolving the discrepancy
+
+IMPORTANT: Use the exact text provided above for calculating character positions. If you cannot find the exact phrase, set the location to null.
 
 Return ONLY a JSON object with this exact structure:
 {
@@ -111,6 +114,8 @@ Return ONLY a JSON object with this exact structure:
         "report1Location": { "start": number, "end": number } | null,
         "report2Location": { "start": number, "end": number } | null
       },
+      "report1Text": string | null,
+      "report2Text": string | null,
       "context": string,
       "suggestion": string
     }
@@ -130,11 +135,36 @@ ${report2.content}`
       ],
       response_format: { type: "json_object" },
       temperature: 0.3,
-      max_tokens: 2048,
+      max_tokens: 1024,
     });
 
     const analysis = JSON.parse(response.choices[0].message.content);
-    const discrepancies = analysis.discrepancies;
+    // Backend post-processing step to verify/correct positions using phrase if available
+    function findTextLocation(content, phrase) {
+      if (!phrase) return null;
+      const start = content.indexOf(phrase);
+      if (start === -1) return null;
+      return { start, end: start + phrase.length };
+    }
+    function verifyLocation(content, location) {
+      if (!location) return null;
+      const { start, end } = location;
+      if (typeof start !== 'number' || typeof end !== 'number' || start < 0 || end > content.length || start >= end) {
+        return null;
+      }
+      return { start, end };
+    }
+    const discrepancies = analysis.discrepancies.map(d => ({
+      ...d,
+      location: {
+        report1Location: d.report1Text
+          ? findTextLocation(report1.content, d.report1Text)
+          : verifyLocation(report1.content, d.location.report1Location),
+        report2Location: d.report2Text
+          ? findTextLocation(report2.content, d.report2Text)
+          : verifyLocation(report2.content, d.location.report2Location)
+      }
+    }));
 
     const comparison = {
       id: `comparison-${Date.now()}`,

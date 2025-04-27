@@ -34,7 +34,7 @@ const ComparisonView: React.FC = () => {
   };
 
   const selectedDiscrepancy = selectedDiscrepancyId
-    ? activeComparison.discrepancies.find(d => d.id === selectedDiscrepancyId)
+    ? activeComparison.discrepancies.find(d => d.id === selectedDiscrepancyId) || null
     : null;
 
   return (
@@ -54,24 +54,6 @@ const ComparisonView: React.FC = () => {
           </h3>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="flex items-center rounded-lg border border-neutral-300 p-1">
-            <Button
-              variant={viewMode === 'semantic' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => setViewMode('semantic')}
-              className="rounded-r-none border-r-0"
-            >
-              Semantic
-            </Button>
-            <Button
-              variant={viewMode === 'rawText' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => setViewMode('rawText')}
-              className="rounded-l-none"
-            >
-              Raw Text
-            </Button>
-          </div>
           <Button
             variant="outline"
             size="sm"
