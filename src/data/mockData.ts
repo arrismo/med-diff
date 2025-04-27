@@ -177,7 +177,7 @@ Clinical Pathologist`,
   {
     id: 'report-9',
     title: 'Electrolyte Panel',
-    provider: 'City Hospital Lab',
+    provider: 'Sunrise Labs',
     date: '2025-07-01T10:00:00Z',
     content: `Patient: Alice Brown\nAge: 60\nGender: Female\nTest: Electrolyte Panel\nDate: July 1, 2025\n\nRESULTS:\nSodium: 130 mmol/L (135-145) - LOW\nPotassium: 4.0 mmol/L (3.5-5.1)\nChloride: 101 mmol/L (98-107)\nBicarbonate: 24 mmol/L (22-29)\nINTERPRETATION:\nHyponatremia detected. Follow-up recommended in 1 month.`,
     patient: {
@@ -196,7 +196,7 @@ Clinical Pathologist`,
   {
     id: 'report-10',
     title: 'Vitamin B12 Test',
-    provider: 'MediLab Services',
+    provider: 'Sunrise Labs',
     date: '2025-07-03T09:30:00Z',
     content: `Patient: Bob Green\nAge: 45\nGender: Male\nTest: Vitamin B12 Test\nDate: July 3, 2025\n\nRESULTS:\nVitamin B12: 120 pg/mL (200-900) - LOW\nINTERPRETATION:\nVitamin B12 deficiency detected. Follow-up recommended in 3 months.`,
     patient: {
@@ -215,7 +215,7 @@ Clinical Pathologist`,
   {
     id: 'report-11',
     title: 'Basic Metabolic Panel',
-    provider: 'Central Diagnostics',
+    provider: 'QuickLab',
     date: '2025-07-05T11:15:00Z',
     content: `Patient: Carol White\nAge: 38\nGender: Female\nTest: Basic Metabolic Panel\nDate: July 5, 2025\n\nRESULTS:\nGlucose: 110 mg/dL (70-99) - HIGH\nCalcium: 9.2 mg/dL (8.5-10.5)\nSodium: 138 mmol/L (135-145)\nPotassium: 4.1 mmol/L (3.5-5.1)\nINTERPRETATION:\nMild hyperglycemia detected. Follow-up recommended in 2 weeks.`,
     patient: {
@@ -234,7 +234,7 @@ Clinical Pathologist`,
   {
     id: 'report-12',
     title: 'Calcium Test',
-    provider: 'QuickLab',
+    provider: 'Central Diagnostics',
     date: '2025-07-07T14:00:00Z',
     content: `Patient: David Black\nAge: 50\nGender: Male\nTest: Calcium Test\nDate: July 7, 2025\n\nRESULTS:\nCalcium: 7.5 mg/dL (8.5-10.5) - LOW\nINTERPRETATION:\nHypocalcemia detected. Follow-up recommended in 2 weeks.`,
     patient: {
@@ -253,7 +253,7 @@ Clinical Pathologist`,
   {
     id: 'report-13',
     title: 'Iron Panel',
-    provider: 'Sunrise Labs',
+    provider: 'QuickLab',
     date: '2025-07-10T08:45:00Z',
     content: `Patient: Emily Stone\nAge: 29\nGender: Female\nTest: Iron Panel\nDate: July 10, 2025\n\nRESULTS:\nSerum Iron: 85 ug/dL (60-170)\nTIBC: 320 ug/dL (250-370)\nTransferrin Saturation: 27% (20-50)\nINTERPRETATION:\nAll values within normal range.`,
     patient: {

@@ -6,6 +6,33 @@ import DiscrepancyList from './DiscrepancyList';
 import Button from '../UI/Button';
 import { FilePlus, ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
 
+const DoctorNotes: React.FC = () => {
+  const [notes, setNotes] = useState('');
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    setSaved(true);
+    setTimeout(() => setSaved(false), 1500);
+  };
+
+  return (
+    <div>
+      <textarea
+        className="w-full border border-neutral-300 rounded p-2 min-h-[80px] text-sm mb-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
+        placeholder="Enter notes here..."
+        value={notes}
+        onChange={e => setNotes(e.target.value)}
+      />
+      <div className="flex items-center space-x-2">
+        <Button variant="primary" size="sm" onClick={handleSave}>
+          Save Notes
+        </Button>
+        {saved && <span className="text-success-600 text-sm">Notes saved!</span>}
+      </div>
+    </div>
+  );
+};
+
 const ComparisonView: React.FC = () => {
   const { activeComparison, viewMode, setViewMode } = useReports();
   const [selectedDiscrepancyId, setSelectedDiscrepancyId] = useState<string | null>(null);
@@ -86,13 +113,17 @@ const ComparisonView: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="bg-white rounded-lg border border-neutral-200 flex-1 overflow-hidden flex flex-col">
+            <div className="bg-white rounded-lg border border-neutral-200 flex-1 overflow-hidden flex flex-col mb-4">
               <h4 className="text-lg font-medium p-4 border-b border-neutral-200">Discrepancies</h4>
               <DiscrepancyList
                 discrepancies={activeComparison.discrepancies}
                 selectedDiscrepancyId={selectedDiscrepancyId}
                 onSelectDiscrepancy={handleDiscrepancySelect}
               />
+            </div>
+            <div className="bg-white rounded-lg border border-neutral-200 p-4 mt-2">
+              <h4 className="text-lg font-medium mb-2">Doctor Notes</h4>
+              <DoctorNotes />
             </div>
           </motion.div>
         )}
