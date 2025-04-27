@@ -242,8 +242,11 @@ export const ReportProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     setActiveComparison(null); // Or set a specific loading state if you have one
 
     try {
+      // Determine the correct API endpoint based on environment
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiUrl = isLocal ? '/api/compare' : '/.netlify/functions/compare';
       // Call the backend API endpoint
-      const response = await fetch('/api/compare', { // Assumes backend is on the same origin or proxied
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
