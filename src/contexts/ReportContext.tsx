@@ -238,40 +238,36 @@ export const ReportProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       throw new Error("Selected reports not found");
     }
 
+    // Indicate loading state (optional, but good UX)
+    setActiveComparison(null); // Or set a specific loading state if you have one
+
     try {
-      const discrepancies = findMedicalDifferences(report1.content, report2.content);
+      // Call the backend API endpoint
+      const response = await fetch('/api/compare', { // Assumes backend is on the same origin or proxied
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ report1, report2 }),
+      });
 
-      const comparison: ComparisonResult = {
-        id: `comparison-${Date.now()}`,
-        timestamp: new Date().toISOString(),
-        report1,
-        report2,
-        discrepancies,
-        summary: {
-          totalDiscrepancies: discrepancies.length,
-          bySeverity: {
-            critical: discrepancies.filter(d => d.severity === 'critical').length,
-            high: discrepancies.filter(d => d.severity === 'high').length,
-            medium: discrepancies.filter(d => d.severity === 'medium').length,
-            low: discrepancies.filter(d => d.severity === 'low').length,
-            informational: 0
-          },
-          byType: {
-            conflict: discrepancies.filter(d => d.type === 'conflict').length,
-            missing: discrepancies.filter(d => d.type === 'missing').length,
-            rangeVariation: 0,
-            terminologyDifference: 0
-          },
-          clinicalImplications: 'Review all highlighted differences in medical values for clinical significance'
-        }
-      };
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
 
-      setComparisons(prev => [...prev, comparison]);
-      setActiveComparison(comparison);
-      return comparison;
+      const comparisonResult: ComparisonResult = await response.json();
+
+      // Update state with the result from the backend
+      setComparisons(prev => [...prev.filter(c => c.id !== comparisonResult.id), comparisonResult]); // Add or update
+      setActiveComparison(comparisonResult);
+      return comparisonResult;
+
     } catch (error) {
-      console.error('Error comparing reports:', error);
-      throw error;
+      console.error('Error comparing reports via API:', error);
+      // Optionally set an error state to show in the UI
+      // setActiveComparison(null); // Clear comparison on error
+      throw error; // Re-throw the error to be handled by the caller if necessary
     }
   };
 

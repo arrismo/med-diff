@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import { neon } from '@neondatabase/serverless';
 import OpenAI from 'openai';
@@ -77,7 +80,7 @@ app.post('/api/compare', async (req, res) => {
     }
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-4-turbo',
       messages: [
         {
           role: 'system',
