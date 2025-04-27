@@ -59,6 +59,12 @@ const Sidebar: React.FC = () => {
             collapsed={collapsed}
           />
           <NavItem 
+            to="/patient-history" 
+            icon={<Clock />} 
+            label="Patient History" 
+            collapsed={collapsed}
+          />
+          <NavItem 
             to="/settings" 
             icon={<Settings />}
             label="Settings"

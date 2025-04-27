@@ -15,6 +15,7 @@ export interface Report {
     orderedBy: string;
     reportedBy: string;
   };
+  pdfUrl?: string;
 }
 
 export type SeverityLevel = 'critical' | 'high' | 'medium' | 'low' | 'informational';
