@@ -6,7 +6,10 @@ const sql = neon(process.env.NEON_DATABASE_URL!);
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
 export const handler: Handler = async (event, context) => {
+  console.log('[Compare Function] Handler started.');
+
   if (event.httpMethod === 'OPTIONS') {
+    console.log('[Compare Function] Handling OPTIONS request.');
     return {
       statusCode: 200,
       headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type' },
@@ -14,16 +17,24 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
+  console.log('[Compare Function] Processing non-OPTIONS request.');
+
   try {
+    console.log('[Compare Function] Parsing request body.');
     const { report1, report2 } = JSON.parse(event.body || '{}');
+    console.log(`[Compare Function] Body parsed. Report 1 ID: ${report1?.id}, Report 2 ID: ${report2?.id}`);
+
     if (!report1 || !report2) {
+      console.log('[Compare Function] Error: Missing reports in request.');
       return {
         statusCode: 400,
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type' },
         body: JSON.stringify({ error: 'Both reports are required' }),
       };
     }
 
+    console.log('[Compare Function] Calling OpenAI API.');
+    const startTime = Date.now();
     const response = await openai.chat.completions.create({
       model: 'gpt-4-turbo',
       messages: [
@@ -40,8 +51,13 @@ export const handler: Handler = async (event, context) => {
       temperature: 0.3,
       max_tokens: 1024,
     });
+    const endTime = Date.now();
+    console.log(`[Compare Function] OpenAI API call completed in ${endTime - startTime}ms.`);
 
+    console.log('[Compare Function] Parsing OpenAI response.');
     const analysis = JSON.parse(response.choices[0].message.content!);
+    console.log('[Compare Function] OpenAI response parsed.');
+
     function findTextLocation(content: string, phrase: string | null) {
       if (!phrase) return null;
       const start = content.indexOf(phrase);
@@ -56,6 +72,7 @@ export const handler: Handler = async (event, context) => {
       }
       return { start, end };
     }
+    console.log('[Compare Function] Processing discrepancies.');
     const discrepancies = analysis.discrepancies.map((d: any) => ({
       ...d,
       location: {
@@ -67,7 +84,9 @@ export const handler: Handler = async (event, context) => {
           : verifyLocation(report2.content, d.location.report2Location)
       }
     }));
+    console.log(`[Compare Function] Processed ${discrepancies.length} discrepancies.`);
 
+    console.log('[Compare Function] Constructing comparison object.');
     const comparison = {
       id: `comparison-${Date.now()}`,
       timestamp: new Date().toISOString(),
@@ -92,18 +111,21 @@ export const handler: Handler = async (event, context) => {
       }
     };
 
+    console.log('[Compare Function] Database interaction (optional) - currently commented out.');
     // Optionally, save to database here using sql if needed
     // await sql`INSERT INTO ...`;
 
+    console.log('[Compare Function] Returning successful response.');
     return {
       statusCode: 200,
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type' },
       body: JSON.stringify(comparison),
     };
   } catch (error: any) {
+    console.error('[Compare Function] Error caught:', error);
     return {
       statusCode: 500,
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Content-Type' },
       body: JSON.stringify({ error: error.message }),
     };
   }
