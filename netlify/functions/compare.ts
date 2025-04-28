@@ -36,7 +36,7 @@ export const handler: Handler = async (event, context) => {
     console.log('[Compare Function] Calling OpenAI API.');
     const startTime = Date.now();
     const response = await openai.chat.completions.create({
-      model: 'gpt-4-turbo',
+      model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'system',
