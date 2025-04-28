@@ -78,10 +78,10 @@ export const handler: Handler = async (event, context) => {
       location: {
         report1Location: d.report1Text
           ? findTextLocation(report1.content, d.report1Text)
-          : verifyLocation(report1.content, d.location.report1Location),
+          : verifyLocation(report1.content, d.location?.report1Location),
         report2Location: d.report2Text
           ? findTextLocation(report2.content, d.report2Text)
-          : verifyLocation(report2.content, d.location.report2Location)
+          : verifyLocation(report2.content, d.location?.report2Location)
       }
     }));
     console.log(`[Compare Function] Processed ${discrepancies.length} discrepancies.`);
