@@ -54,6 +54,8 @@ export const handler: Handler = async (event, context) => {
     const endTime = Date.now();
     console.log(`[Compare Function] OpenAI API call completed in ${endTime - startTime}ms.`);
 
+    console.log('[Compare Function] Raw OpenAI response content:', response.choices[0].message.content);
+
     console.log('[Compare Function] Parsing OpenAI response.');
     const analysis = JSON.parse(response.choices[0].message.content!);
     console.log('[Compare Function] OpenAI response parsed.');
